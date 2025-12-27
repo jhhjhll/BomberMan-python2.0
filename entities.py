@@ -50,16 +50,10 @@ class Bomb(Entity):
                 
                 if not (0 <= ny < len(grid_map) and 0 <= nx < len(grid_map[0])):
                     break
-                
                 tile = grid_map[ny][nx]
-                
                 if tile == "#": # Камінь
                     break
-                
-                self.explosion_tiles.append((ny, nx))
-                
-                if tile == "X": # Стіна, що руйнується
-                    break
+                self.explosion_tiles.append((ny, nx))  
 
     def draw(self, surface):
         if not self.exploded:
@@ -100,7 +94,7 @@ class Player(Entity):
         
         if 0 <= ny < len(grid_map) and 0 <= nx < len(grid_map[0]):
             tile = grid_map[ny][nx]
-            
+
             if tile in ["#", "X", "b", "w", "d"]:
                 return 
             self.x, self.y = nx, ny
