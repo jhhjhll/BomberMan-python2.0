@@ -59,16 +59,14 @@ class Level:
                 self.grid = [list(line.strip()) for line in f]
             self.height = len(self.grid)
             self.width = len(self.grid[0])
-        except FileNotFoundError:
-            print(f"Файл {filename} не знайдено, генеруємо випадковий.")
+        except FileNotFoundError: 
             self.generate()
 
     def update_grid_after_explosion(self, tiles):
-        """Змінює карту після вибуху (відкриває двері, бонуси, ламає стіни)"""
         for r, c in tiles:
             if self.grid[r][c] == "X": self.grid[r][c] = " "
-            elif self.grid[r][c] == "d": self.grid[r][c] = "D" # Visible Door
-            elif self.grid[r][c] == "b": self.grid[r][c] = "B" # Visible Bonus
+            elif self.grid[r][c] == "d": self.grid[r][c] = "D" 
+            elif self.grid[r][c] == "b": self.grid[r][c] = "B" 
             elif self.grid[r][c] == "w": self.grid[r][c] = "W"
 
     def draw(self, surface, images):
