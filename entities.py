@@ -53,7 +53,7 @@ class Bomb(Entity):
                 tile = grid_map[ny][nx]
                 if tile == "#": # Камінь
                     break
-                self.explosion_tiles.append((ny, nx))  
+                self.explosion_tiles.append((ny, nx))   
 
     def draw(self, surface):
         if not self.exploded:
