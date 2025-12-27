@@ -100,11 +100,8 @@ class Player(Entity):
         
         if 0 <= ny < len(grid_map) and 0 <= nx < len(grid_map[0]):
             tile = grid_map[ny][nx]
-            # Логіка проходження крізь об'єкти
-            if tile not in ["#", "X", "b", "w"]:
-                pass
-
-            if tile in ["#", "X"]:
+            
+            if tile in ["#", "X", "b", "w", "d"]:
                 return 
             self.x, self.y = nx, ny
             self.check_tile_interaction(grid_map, ny, nx)# Обробка бонусів та виходу
