@@ -3,7 +3,6 @@ import time
 from settings import *
 
 class Entity:
-    """Базовий клас для будь-якого об'єкта на карті"""
     def __init__(self, x, y, image):
         self.x = x
         self.y = y

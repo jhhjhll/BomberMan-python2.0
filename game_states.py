@@ -8,7 +8,7 @@ from map_manager import Level
 # --- Базовий клас Стану ---
 class State:
     def __init__(self, game):
-        self.game = game # Посилання на головний об'єкт гри
+        self.game = game
     
     def handle_events(self, event):
         pass
@@ -26,7 +26,7 @@ class MenuState(State):
         self.game.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         
         self.font = pygame.font.Font(None, 50)
-        # Проста структура кнопок
+        # Структура кнопок
         self.options = [
             ("Кампанія", self.start_campaign),
             ("Випадковий рівень", self.start_random),
@@ -49,7 +49,7 @@ class MenuState(State):
     def handle_events(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             mx, my = pygame.mouse.get_pos()
-            # Проста логіка кліків (можна покращити клас Button)
+            # Проста логіка кліків
             for i, (text, action) in enumerate(self.options):
                 rect = pygame.Rect(SCREEN_WIDTH//2 - 100, 200 + i*70, 200, 50)
                 if rect.collidepoint((mx, my)):
