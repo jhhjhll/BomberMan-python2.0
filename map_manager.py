@@ -13,7 +13,6 @@ class Level:
             self.generate()
 
     def generate(self):
-        # Ваша логіка з level.py, загорнута в метод класу
         self.grid = [["#" for _ in range(self.width)] for _ in range(self.height)]
         
         # Створення сітки
@@ -25,15 +24,14 @@ class Level:
                     self.grid[i][j] = " "
                 else:
                     self.grid[i][j] = "#"
-
         # Стіни X
         for i in range(self.height):
             for j in range(self.width):
                 if self.grid[i][j] == " " and random.random() < 0.4:
                     self.grid[i][j] = "X"
         
-        # Вихід та бонуси (спрощено для прикладу, але логіка та ж)
-        self.place_object("d", 1) # Door (hidden)
+        # Вихід та бонуси 
+        self.place_object("d", 1) # Door 
         self.place_object("b", 3) # Bomb bonus
         self.place_object("w", 3) # Wave bonus
         
@@ -48,9 +46,9 @@ class Level:
             r = random.randint(1, self.height-2)
             c = random.randint(1, self.width-2)
             if self.grid[r][c] == "X":
-                if char == "d": self.grid[r][c] = "d" # Hidden door
-                elif char == "b": self.grid[r][c] = "b" # Hidden bomb bonus
-                elif char == "w": self.grid[r][c] = "w" # Hidden wave bonus
+                if char == "d": self.grid[r][c] = "d" 
+                elif char == "b": self.grid[r][c] = "b" 
+                elif char == "w": self.grid[r][c] = "w" 
                 placed += 1
 
     def load_from_file(self, filename):
