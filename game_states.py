@@ -1,4 +1,3 @@
-# game_states.py
 import pygame
 import sys
 import time

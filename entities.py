@@ -1,4 +1,3 @@
-# entities.py
 import pygame
 import time
 from settings import *

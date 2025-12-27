@@ -1,8 +1,7 @@
-# settings.py
 import pygame
 
 # Екран
-SCREEN_WIDTH = 750 # (15 * 50) - трохи розширив під грід
+SCREEN_WIDTH = 750
 SCREEN_HEIGHT = 650
 CELL_SIZE = 50
 TITLE = "BomberMan OOP"

@@ -1,4 +1,3 @@
-# map_manager.py
 import random
 from settings import *
 
