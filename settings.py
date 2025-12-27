@@ -1,0 +1,17 @@
+# settings.py
+import pygame
+
+# Екран
+SCREEN_WIDTH = 750 # (15 * 50) - трохи розширив під грід
+SCREEN_HEIGHT = 650
+CELL_SIZE = 50
+TITLE = "BomberMan OOP"
+FPS = 60
+
+# Кольори
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+BLUE = (65, 105, 225)
+LIGHT_BLUE = (100, 149, 237)
+YELLOW = (255, 215, 0)
+RED = (200, 50, 50)

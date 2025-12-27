@@ -1,0 +1,13 @@
+###################
+#   XXX XXX     X #
+# # #X# # #X# # # #
+#X XX Xw  b  XX X #
+# # # # #X#X#X# #X#
+# XXX X X X XX w X#
+#X#X# #X# #X# # #X#
+#X   b    X X  X  #
+# #X# # #X# #X#d#X#
+#X  X   X    X    #
+# # # # # # #X#X#X#
+# X XX XX  X  X   #
+###################
