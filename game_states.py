@@ -19,12 +19,11 @@ class State:
     def draw(self):
         pass
 
-# --- Стан: Головне меню ---
+# --- Стан: Головне Меню ---
 class MenuState(State):
     def __init__(self, game):
         super().__init__(game)
         self.game.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-        
         self.font = pygame.font.Font(None, 50)
         # Структура кнопок
         self.options = [
@@ -34,27 +33,30 @@ class MenuState(State):
         ]
         self.selected_index = 0
 
+    # Вибір початку кампанії
     def start_campaign(self):
-        # Перемикаємо на екран вибору рівня
         self.game.change_state(LevelSelectState(self.game))
 
+    # Вибір початку випадкового рівня 
     def start_random(self):
-        # Одразу запускаємо гру
         self.game.change_state(GameplayState(self.game, random_gen=True))
 
+    # Вихід з гри
     def exit_game(self):
         pygame.quit()
         sys.exit()
 
+    # Обробка подій мишки
     def handle_events(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             mx, my = pygame.mouse.get_pos()
-            # Проста логіка кліків
+            # Перевірка кліку по кнопках
             for i, (text, action) in enumerate(self.options):
-                rect = pygame.Rect(SCREEN_WIDTH//2 - 140, 200 + i*70, 200, 50)
+                rect = pygame.Rect(SCREEN_WIDTH//2 - 140, 200 + i*70, 300, 50)
                 if rect.collidepoint((mx, my)):
                     action()
 
+    # Малювання меню
     def draw(self):
         self.game.screen.fill(BLACK)
         title = self.font.render("BomberMan", True, YELLOW)
@@ -65,7 +67,7 @@ class MenuState(State):
             rect = pygame.Rect(SCREEN_WIDTH//2 - 140, 200 + i*70, 300, 50)
             color = LIGHT_BLUE if rect.collidepoint((mx, my)) else BLUE
             pygame.draw.rect(self.game.screen, color, rect, border_radius=10)
-            
+
             label = pygame.font.Font(None, 36).render(text, True, WHITE)
             self.game.screen.blit(label, (rect.centerx - label.get_width()//2, rect.centery - label.get_height()//2))
 
@@ -75,18 +77,22 @@ class LevelSelectState(State):
         super().__init__(game)
         self.levels = [1, 2, 3, 4, 5]
 
+    # Обробка подій мишки
     def handle_events(self, event):
+        # Повернення в меню
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             self.game.change_state(MenuState(self.game))
-        
+        # Вибір рівня
         if event.type == pygame.MOUSEBUTTONDOWN:
             mx, my = pygame.mouse.get_pos()
             for i, lvl in enumerate(self.levels):
                 rect = pygame.Rect(60 + i*100, 150, 80, 80)
                 if rect.collidepoint((mx, my)):
                     filename = f"level_{lvl}.txt"
+                    # Запуск гри з обраним рівнем
                     self.game.change_state(GameplayState(self.game, level_file=filename))
 
+    # Малювання екрану вибору рівня
     def draw(self):
         self.game.screen.fill(BLACK)
         draw_text = pygame.font.Font(None, 50).render("Select Level", True, YELLOW)
@@ -104,27 +110,29 @@ class LevelSelectState(State):
 class GameplayState(State):
     def __init__(self, game, level_file=None, random_gen=False):
         super().__init__(game)
+        # Завантаження рівня з файлу або випадкова генерація
         if random_gen:
-            self.level = Level(15, 13)
+            self.level = Level(None, None)
         else:
             self.level = Level(15, 13, level_file)
-
+        # Встановлення розміру вікна відповідно до рівня
         level_width_px = self.level.width * CELL_SIZE
         level_height_px = self.level.height * CELL_SIZE
         self.game.screen = pygame.display.set_mode((level_width_px, level_height_px))
-            
+        # Створення гравця
         self.player = Player(1, 1, self.game.images['pers'])
         self.start_time = time.time()
         self.game_over = False
         self.end_game_time = 0
 
+    # Обробка подій
     def handle_events(self, event):
         self.player.handle_input(event, self.level.grid, self.game.images)
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
              self.game.change_state(MenuState(self.game))
 
+    # Оновлення стану гри
     def update(self):
-        # 1. Логіка завершення гри
         if self.game_over:
             current_time = time.time()
             if current_time - self.end_game_time > 1: # Чекаємо 1 секунди

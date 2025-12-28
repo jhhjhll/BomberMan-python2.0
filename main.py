@@ -1,3 +1,5 @@
+import os
+os.environ['SDL_VIDEO_CENTERED'] = '1'
 import pygame
 import sys
 from settings import *
@@ -13,6 +15,7 @@ class Game:
         self.load_assets()
         self.state = MenuState(self) # Початковий стан
 
+    # Завантаження активів
     def load_assets(self):
         def load_img(path, color):
             try:
@@ -21,7 +24,7 @@ class Game:
                 img = pygame.Surface((CELL_SIZE, CELL_SIZE))
                 img.fill(color)
             return pygame.transform.scale(img, (CELL_SIZE, CELL_SIZE))
-
+        # Завантаження зображень
         self.images = {
             "stone": load_img("Image/Stone.jpg", (50, 50, 50)),
             "empty": load_img("Image/Empty.jpg", (34, 139, 34)),
@@ -33,10 +36,11 @@ class Game:
             "bomb_bonus": load_img("Image/BombBonus.jpg", (255, 0, 0)),
             "wave_bonus": load_img("Image/WaveBonus.jpg", (0, 0, 255))
         }
-
+    # Зміна стану гри
     def change_state(self, new_state):
         self.state = new_state
 
+    # Основний цикл гри
     def run(self):
         while self.running:
             # 1. Події
