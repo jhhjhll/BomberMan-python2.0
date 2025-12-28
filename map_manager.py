@@ -96,4 +96,4 @@ class Level:
                 elif tile in ["d", "b", "w"]: surface.blit(images["wall"], (x, y))
                 elif tile == "D": surface.blit(images["door"], (x, y))
                 elif tile == "B": surface.blit(images["bomb_bonus"], (x, y))
-                elif tile == "W": surface.blit(images["#wave_bonus"], (x, y))
+                elif tile == "W": surface.blit(images["wave_bonus"], (x, y))
