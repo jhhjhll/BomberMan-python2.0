@@ -4,7 +4,7 @@ import pygame
 SCREEN_WIDTH = 750
 SCREEN_HEIGHT = 650
 CELL_SIZE = 50
-TITLE = "BomberMan OOP"
+TITLE = "BomberMan"
 FPS = 60
 
 # Кольори
