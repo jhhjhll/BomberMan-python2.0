@@ -51,7 +51,7 @@ class MenuState(State):
             mx, my = pygame.mouse.get_pos()
             # Проста логіка кліків
             for i, (text, action) in enumerate(self.options):
-                rect = pygame.Rect(SCREEN_WIDTH//2 - 100, 200 + i*70, 200, 50)
+                rect = pygame.Rect(SCREEN_WIDTH//2 - 140, 200 + i*70, 200, 50)
                 if rect.collidepoint((mx, my)):
                     action()
 
@@ -62,7 +62,7 @@ class MenuState(State):
 
         mx, my = pygame.mouse.get_pos()
         for i, (text, _) in enumerate(self.options):
-            rect = pygame.Rect(SCREEN_WIDTH//2 - 100, 200 + i*70, 300, 50)
+            rect = pygame.Rect(SCREEN_WIDTH//2 - 140, 200 + i*70, 300, 50)
             color = LIGHT_BLUE if rect.collidepoint((mx, my)) else BLUE
             pygame.draw.rect(self.game.screen, color, rect, border_radius=10)
             
